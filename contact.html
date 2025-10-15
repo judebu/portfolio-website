@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Jude Hosmer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    main { padding: 80px 20px; max-width:600px; margin:0 auto; color:white; }
+    h1 { font-size:36px; margin-bottom:20px; text-align:center; }
+    p { text-align:center; margin-bottom:10px; }
+    a { color:#4a90e2; }
+
+    form { background: rgba(46,46,46,0.5); padding:30px; border-radius:15px; display:flex; flex-direction:column; gap:15px; }
+    .field { display:flex; flex-direction:column; }
+    label { font-weight:600; margin-bottom:5px; color:#cfcfcf; }
+    input[type="text"], input[type="email"], textarea { padding:10px; border:none; border-radius:8px; font-size:14px; background:#333; color:white; }
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus { outline:2px solid #4a90e2; }
+    #button { background:#4a90e2; color:white; font-weight:600; padding:12px; border:none; border-radius:10px; cursor:pointer; transition:0.3s; }
+    #button:hover { background:#357ABD; }
+    @media (max-width:768px) {
+      main { padding:40px 20px; }
+      h1 { font-size:28px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">J <span>Jude Hosmer</span></div>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main>
+    <h1>Contact Me</h1>
+    <p>Email: <a href="mailto:judeh@bu.edu">judeh@bu.edu</a></p>
+    <p>Phone: 646 708 1889</p>
+    <p>Feel free to reach out for opportunities or collaborations.</p>
+
+    <form id="form">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" required>
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <input type="text" name="message" id="message" required>
+      </div>
+      <input type="submit" id="button" value="Send Email">
+    </form>
+  </main>
+
+  <script type="text/javascript">
+    emailjs.init('JmYphf3DEmh3xw3FT');
+
+    const btn = document.getElementById('button');
+
+    document.getElementById('form')
+      .addEventListener('submit', function(event) {
+        event.preventDefault();
+        btn.value = 'Sending...';
+
+        const serviceID = 'default_service';
+        const templateID = 'template_83hkjjd';
+
+        emailjs.sendForm(serviceID, templateID, this)
+          .then(() => {
+            btn.value = 'Send Email';
+            alert('Sent!');
+            this.reset();
+          }, (err) => {
+            btn.value = 'Send Email';
+            alert(JSON.stringify(err));
+          });
+      });
+  </script>
+</body>
+</html>

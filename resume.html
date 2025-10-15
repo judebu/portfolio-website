@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume | Jude Hosmer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://kit.fontawesome.com/a2d9d6b123.js" crossorigin="anonymous"></script>
+  <style>
+    .resume-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 32px;
+      font-weight: 700;
+      color: white;
+      margin: 50px 0 30px 0;
+      padding-bottom: 15px;
+    }
+
+    /* About Me Section */
+    .about-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin-bottom: 60px;
+      padding: 40px;
+      background: rgba(74, 144, 226, 0.05);
+      border-radius: 15px;
+    }
+
+    .about-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #cfcfcf;
+    }
+
+    .about-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .info-label {
+      background: #4a90e2;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: 600;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .info-value {
+      color: #cfcfcf;
+      font-size: 16px;
+      padding-top: 8px;
+    }
+
+    /* Timeline Section */
+    .timeline-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #4a90e2;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      padding: 25px;
+      background: rgba(46, 46, 46, 0.5);
+      border-radius: 10px;
+      border-left: 3px solid #4a90e2;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -50px;
+      top: 30px;
+      width: 12px;
+      height: 12px;
+      background: #4a90e2;
+      border-radius: 50%;
+    }
+
+    .timeline-item.past::before {
+      background: #666;
+    }
+
+    .timeline-date {
+      background: rgba(74, 144, 226, 0.2);
+      color: #4a90e2;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .timeline-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    .timeline-subtitle {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: #cfcfcf;
+      line-height: 1.6;
+    }
+
+    /* Skills Section */
+    .skills-container {
+      margin-bottom: 60px;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      background: rgba(74, 144, 226, 0.1);
+      color: #cfcfcf;
+      border: 2px solid rgba(74, 144, 226, 0.3);
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: #4a90e2;
+      color: #4a90e2;
+    }
+
+    .filter-btn.active {
+      background: #4a90e2;
+      color: white;
+      border-color: #4a90e2;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .skill-category-section {
+      margin-bottom: 50px;
+    }
+
+    .skill-percentage {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
+    text-align: right; 
+  }
+
+
+    .skill-category-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #4a90e2;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(74, 144, 226, 0.2);
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .skill-icon {
+      font-size: 15px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(74, 144, 226, 0.1);
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .skill-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 6px;
+      background: #333;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: #4a90e2;
+      border-radius: 3px;
+    }
+
+    /* Languages Section */
+    .languages-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .skill-category {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .language-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .language-icon {
+      font-size: 32px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(74, 144, 226, 0.1);
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .language-info {
+      flex: 1;
+    }
+
+    .language-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .language-dots {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4a90e2;
+    }
+
+    .dot.empty {
+      background: #555;
+    }
+
+    .language-percent {
+      margin-left: 10px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    /* Platforms Section */
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .platform-item {
+      text-align: center;
+    }
+
+    .platform-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      position: relative;
+      background: conic-gradient(#4a90e2 var(--percentage), #333 var(--percentage));
+    }
+
+    .platform-circle::after {
+      content: '';
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #1e1e1e;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .platform-percent {
+      font-size: 28px;
+      font-weight: 700;
+      color: #4a90e2;
+      position: relative;
+      z-index: 1;
+    }
+
+    .platform-name {
+      font-size: 14px;
+      color: #cfcfcf;
+      margin-top: 15px;
+    }
+
+    /* Knowledge Checklist */
+    .knowledge-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .knowledge-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: #cfcfcf;
+      font-size: 14px;
+    }
+
+    .knowledge-item::before {
+      content: '✔';
+      color: #4a90e2;
+      font-weight: 700;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .interests-list .knowledge-item::before {
+      content: '⚽️';
+      color: inherit;
+      font-weight: normal;
+    }
+
+    .interests-list .knowledge-item:nth-child(2)::before {
+      content: '🌆';
+    }
+
+    .interests-list .knowledge-item:nth-child(3)::before {
+      content: '🍿';
+    }
+
+    .interests-list .knowledge-item:nth-child(4)::before {
+      content: '💸';
+    }
+
+    .interests-list .knowledge-item:nth-child(5)::before {
+      content: '🥊';
+    }
+
+    .interests-list .knowledge-item:nth-child(6)::before {
+      content: '🥋';
+    }
+
+    .interests-list .knowledge-item:nth-child(7)::before {
+      content: '💪';
+    }
+
+    .interests-list .knowledge-item:nth-child(8)::before {
+      content: '🚀';
+    }
+
+    @media (max-width: 768px) {
+      .resume-container {
+        padding: 40px 20px;
+      }
+
+      .about-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .timeline-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .languages-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .platforms-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .knowledge-list {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .filter-buttons {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">J <span>Jude Hosmer</span></div>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html" class="active">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <div class="resume-container">
+    <!-- About Me Section -->
+    <div class="section-title">About Me</div>
+    <div class="about-section">
+      <div class="about-text">
+        <p>Hi, I'm Jude, a junior at Boston University specializing in software engineering and frontend development. Iâ€™m passionate about building aesthetic & efficient web apps. I have experience with Python, React, TypeScript, & full stack development, focusing on component based design, API integration, and responsive interfaces.</p>
+      </div>
+      <div class="about-info">
+        <div class="info-item">
+          <div class="info-label">Location:</div>
+          <div class="info-value">New York City, USA</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Languages:</div>
+          <div class="info-value">English, Spanish</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Skills:</div>
+          <div class="info-value">React, TypeScript, Python, MongoDB, Node.js, SQL</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience & Education Timeline -->
+    <div class="section-title">Resume</div>
+    <div class="timeline-section">
+      <!-- Experience -->
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
+          <i class="fas fa-briefcase" style="font-size: 24px; color: #4a90e2;"></i>
+          <h3 style="font-size: 20px; font-weight: 700; color: white; margin: 0;">EXPERIENCE</h3>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">August 2025 — Present</div>
+            <div class="timeline-title">UNEMPLOYED</div>
+            <div class="timeline-subtitle">UNEMPLOYED LLC</div>
+            <div class="timeline-desc">I AM UNEMPLOYED</div>
+          </div>
+          <div class="timeline-item past">
+            <div class="timeline-date">May 2023 — Sep 2023</div>
+            <div class="timeline-title">Frontend Developer Intern</div>
+            <div class="timeline-subtitle">Fairmount Innovation Lab</div>
+            <div class="timeline-desc">Built responsive React/Tailwind websites. Collaborated with design team to implement UI/UX improvements.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
+          <i class="fas fa-graduation-cap" style="font-size: 24px; color: #4a90e2;"></i>
+          <h3 style="font-size: 20px; font-weight: 700; color: white; margin: 0;">EDUCATION</h3>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Expected May 2027</div>
+            <div class="timeline-title">Boston University</div>
+            <div class="timeline-subtitle">B.S. Computer Science & Economics</div>
+            <div class="timeline-desc">Primarily focused on software engineering and full-stack development. Involved in FinTech and BU Investment club.</div>
+          </div>
+          <div class="timeline-item past">
+            <div class="timeline-date">June 2023</div>
+            <div class="timeline-title">Frank McCourt High School</div>
+            <div class="timeline-subtitle">4.0 GPA â€¢ Honor Roll</div>
+            <div class="timeline-desc">Graduated with honors. Excelled in dual enrollment computer science and finance courses at Stanford and Wharton.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- General Skills -->
+    <div class="section-title">General Skills</div>
+    
+    <div class="skills-container">
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="frontend">Frontend</button>
+        <button class="filter-btn" data-filter="backend">Backend</button>
+        <button class="filter-btn" data-filter="tools">Tools</button>
+      </div>
+      <div id="skillsContent"></div>
+    </div>
+
+    <!-- Languages -->
+    <div class="section-title">Languages</div>
+    <div class="languages-section">
+      <div class="skill-category">
+        <div class="language-item">
+          <div class="language-icon">🇬🇧</div>
+          <div class="language-info">
+            <div class="language-name">English</div>
+            <div class="language-dots">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <span class="language-percent">100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="language-item">
+          <div class="language-icon">🇪🇸</div>
+          <div class="language-info">
+            <div class="language-name">Spanish</div>
+            <div class="language-dots">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot empty"></div>
+              <div class="dot empty"></div>
+              <div class="dot empty"></div>
+              <div class="dot empty"></div>
+              <span class="language-percent">60%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Platforms -->
+    <div class="section-title">Platforms</div>
+    <div class="platforms-grid">
+      <div class="platform-item">
+        <div class="platform-circle" style="--percentage: 90%;">
+          <div class="platform-percent">90%</div>
+        </div>
+        <div class="platform-name">Visual Studio Code</div>
+      </div>
+      <div class="platform-item">
+        <div class="platform-circle" style="--percentage: 85%;">
+          <div class="platform-percent">85%</div>
+        </div>
+        <div class="platform-name">Git/GitHub</div>
+      </div>
+      <div class="platform-item">
+        <div class="platform-circle" style="--percentage: 88%;">
+          <div class="platform-percent">88%</div>
+        </div>
+        <div class="platform-name">Vercel</div>
+      </div>
+      <div class="platform-item">
+        <div class="platform-circle" style="--percentage: 82%;">
+          <div class="platform-percent">82%</div>
+        </div>
+        <div class="platform-name">MongoDB</div>
+      </div>
+    </div>
+
+    <!-- Knowledge -->
+    <div class="section-title" style="margin-top: 60px;">Knowledge</div>
+    <div class="knowledge-list">
+      <div class="knowledge-item">Web Development & Frontend Design</div>
+      <div class="knowledge-item">Object-Oriented Programming (OOP)</div>
+      <div class="knowledge-item">Data Structures & Algorithms</div>
+      <div class="knowledge-item">Git & GitHub</div>
+      <div class="knowledge-item">Full Stack Development</div>
+      <div class="knowledge-item">SQL & Database Design</div>
+    </div>
+
+    <!-- Interests -->
+    <div class="section-title" style="margin-top: 60px;">Interests</div>
+    <div class="knowledge-list interests-list">
+      <div class="knowledge-item">Soccer</div>
+      <div class="knowledge-item">Travel</div>
+      <div class="knowledge-item">Movies & TV Shows</div>
+      <div class="knowledge-item">Investing</div>
+      <div class="knowledge-item">Muay Thai</div>
+      <div class="knowledge-item">BJJ</div>
+      <div class="knowledge-item">Fitness</div>
+      <div class="knowledge-item">Entrepreneurship</div>
+    </div>
+  </div>
+
+  <script>
+    const skillsData = {
+      frontend: [
+        { name: 'HTML', icon: 'HTML', percentage: 95 },
+        { name: 'React', icon: 'React', percentage: 88 },
+        { name: 'Tailwind CSS/NativeWind', icon: 'TW', percentage: 90 },
+        { name: 'TypeScript', icon: 'TS', percentage: 85 },
+        { name: 'JavaScript', icon: 'JS', percentage: 80 },
+        { name: 'Next.js', icon: 'Next', percentage: 70 },
+
+      ],
+      backend: [
+        { name: 'Python', icon: 'Py', percentage: 90 },
+        { name: 'SQL', icon: 'SQL', percentage: 80 },
+        { name: 'Node.js', icon: 'Node', percentage: 80 },
+        { name: 'MongoDB', icon: 'MDB', percentage: 75 },
+
+      ],
+      tools: [
+        { name: 'Git/GitHub', icon: 'Git', percentage: 90 },
+        { name: 'VS Code', icon: 'VS', percentage: 90 },
+        { name: 'Vercel', icon: 'VC', percentage: 88 },
+        { name: 'Terminal', icon: 'TM', percentage: 70 },
+      ]
+    };
+
+    function renderSkills(filter) {
+      const container = document.getElementById('skillsContent');
+      container.innerHTML = '';
+
+      if (filter === 'all') {
+        const allSkills = { 'Frontend': skillsData.frontend, 'Backend': skillsData.backend, 'Tools': skillsData.tools };
+        for (const [category, skills] of Object.entries(allSkills)) {
+          renderCategory(container, category, skills);
+          
+        }
+      } else {
+        renderCategory(container, filter.charAt(0).toUpperCase() + filter.slice(1), skillsData[filter]);
+      }
+    }
+
+    function renderCategory(container, categoryName, skills) {
+      const categoryDiv = document.createElement('div');
+      categoryDiv.className = 'skill-category-section';
+      
+      
+      if (skills.length > 0) {
+        const title = document.createElement('div');
+        title.className = 'skill-category-title';
+        title.textContent = categoryName;
+        categoryDiv.appendChild(title);
+
+        const grid = document.createElement('div');
+        grid.className = 'skills-grid';
+        
+        skills.forEach(skill => {
+          const skillItem = document.createElement('div');
+          skillItem.className = 'skill-item';
+          skillItem.innerHTML = `
+  <div class="skill-header">
+    <div class="skill-icon">${skill.icon}</div>
+    <div class="skill-name">${skill.name}</div>
+  </div>
+  <div class="skill-bar">
+    <div class="skill-bar-fill" style="width: ${skill.percentage}%;"></div>
+  </div>
+  <div class="skill-percentage">${skill.percentage}%</div>
+`;
+
+          grid.appendChild(skillItem);
+        });
+
+        categoryDiv.appendChild(grid);
+        container.appendChild(categoryDiv);
+      }
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderSkills(btn.dataset.filter);
+      });
+    });
+
+    renderSkills('all');
+  </script>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
