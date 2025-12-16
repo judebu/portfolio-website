@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="https://kit.fontawesome.com/a2d9d6b123.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
   <style>
     .resume-container {
       max-width: 1200px;
@@ -233,6 +234,24 @@
       background: rgba(74, 144, 226, 0.1);
       border-radius: 8px;
       flex-shrink: 0;
+    }
+
+    .skill-icon i {
+      font-size: 28px;
+      color: #4a90e2;
+    }
+
+    .skill-icon .icon-text {
+      font-size: 22px;
+      font-weight: 700;
+      color: #4a90e2;
+      line-height: 1;
+    }
+
+    .skill-icon .devicon-nextjs-plain,
+    .skill-icon .devicon-nextjs-original,
+    .skill-icon .devicon-vercel-original {
+      color: white;
     }
 
     .skill-name {
@@ -508,7 +527,7 @@
         </div>
         <div class="info-item">
           <div class="info-label">Skills:</div>
-          <div class="info-value">React, TypeScript, Python, MongoDB, Node.js, SQL</div>
+          <div class="info-value">React/Nextjs, TypeScript, Python, Databases, Node.js</div>
         </div>
       </div>
     </div>
@@ -678,26 +697,27 @@
   <script>
     const skillsData = {
       frontend: [
-        { name: 'HTML', icon: 'HTML', percentage: 95 },
-        { name: 'React', icon: 'React', percentage: 88 },
-        { name: 'Tailwind CSS/NativeWind', icon: 'TW', percentage: 90 },
-        { name: 'TypeScript', icon: 'TS', percentage: 85 },
-        { name: 'JavaScript', icon: 'JS', percentage: 80 },
-        { name: 'Next.js', icon: 'Next', percentage: 70 },
+        { name: 'HTML', iconClass: 'devicon-html5-plain colored', percentage: 95 },
+        { name: 'React', iconClass: 'devicon-react-original colored', percentage: 88 },
+        { name: 'Tailwind CSS / NativeWind', iconClass: 'devicon-tailwindcss-plain colored', percentage: 90 },
+        { name: 'TypeScript', iconClass: 'devicon-typescript-plain colored', percentage: 85 },
+        { name: 'JavaScript', iconClass: 'devicon-javascript-plain colored', percentage: 80 },
+        { name: 'Next.js', iconClass: 'devicon-nextjs-plain', percentage: 70 },
 
       ],
       backend: [
-        { name: 'Python', icon: 'Py', percentage: 90 },
-        { name: 'SQL', icon: 'SQL', percentage: 80 },
-        { name: 'Node.js', icon: 'Node', percentage: 80 },
-        { name: 'MongoDB', icon: 'MDB', percentage: 75 },
+        { name: 'Python', iconClass: 'devicon-python-plain colored', percentage: 90 },
+        { name: 'SQL', iconClass: 'devicon-mysql-plain colored', percentage: 80 },
+        { name: 'Node.js', iconClass: 'devicon-nodejs-plain colored', percentage: 80 },
+        { name: 'MongoDB', iconClass: 'devicon-mongodb-plain colored', percentage: 75 },
+        { name: 'PostgreSQL', iconClass: 'devicon-postgresql-plain colored', percentage: 75 },
 
       ],
       tools: [
-        { name: 'Git/GitHub', icon: 'Git', percentage: 90 },
-        { name: 'VS Code', icon: 'VS', percentage: 90 },
-        { name: 'Vercel', icon: 'VC', percentage: 88 },
-        { name: 'Terminal', icon: 'TM', percentage: 70 },
+        { name: 'Git/GitHub', iconClass: 'devicon-git-plain colored', percentage: 90 },
+        { name: 'VS Code', iconClass: 'devicon-vscode-plain colored', percentage: 90 },
+        { name: 'Vercel', iconText: 'V', percentage: 100 },
+        { name: 'Terminal', iconClass: 'devicon-bash-plain colored', percentage: 70 },
       ]
     };
 
@@ -735,7 +755,9 @@
           skillItem.className = 'skill-item';
           skillItem.innerHTML = `
   <div class="skill-header">
-    <div class="skill-icon">${skill.icon}</div>
+    <div class="skill-icon">
+      ${skill.iconText ? `<span class="icon-text">${skill.iconText}</span>` : skill.iconClass ? `<i class="${skill.iconClass}" aria-hidden="true"></i>` : `<span>${skill.name}</span>`}
+    </div>
     <div class="skill-name">${skill.name}</div>
   </div>
   <div class="skill-bar">
