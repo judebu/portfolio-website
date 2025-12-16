@@ -25,6 +25,9 @@ header {
   font-weight: 700;
   font-size: 22px;
   color: #4a90e2;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
 .logo span {
