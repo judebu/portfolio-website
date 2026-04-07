@@ -333,6 +333,59 @@
       box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
     }
 
+    /* Make Terrier Taste carousel images a bit smaller */
+    .carousel[data-carousel="terrier"] .carousel-slide {
+      height: 340px;
+    }
+
+    /* Terrier detail layout and carousel sizing */
+    #project-detail-2 .detail-layout {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+    }
+
+    #project-detail-2 .detail-right,
+    #project-detail-2 .project-gallery {
+      max-width: 640px;
+    }
+
+    #project-detail-2 .carousel {
+      max-width: 620px;
+      padding: 10px;
+      border-radius: 12px;
+      border: none;
+    }
+
+    #project-detail-2 .carousel-window {
+      max-height: 360px;
+      border-radius: 10px;
+    }
+
+    #project-detail-2 .carousel-slide {
+      height: 320px;
+      border-radius: 10px;
+    }
+
+    #project-detail-2 .carousel-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+    }
+
+    #project-detail-2 .detail-description p {
+      margin: 0 0 14px;
+    }
+
+    #project-detail-2 .detail-description ul {
+      margin: 0;
+      padding-left: 22px;
+      line-height: 1.8;
+    }
+
+    #project-detail-2 .detail-description li + li {
+      margin-top: 8px;
+    }
+
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -470,6 +523,23 @@
         max-height: 380px;
         object-fit: contain;
       }
+
+      #project-detail-2 .detail-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      #project-detail-2 .carousel {
+        max-width: 520px;
+      }
+
+      #project-detail-2 .carousel-window {
+        max-height: 320px;
+      }
+
+      #project-detail-2 .carousel-slide {
+        height: 290px;
+      }
     }
 
     @media (max-width: 900px) {
@@ -536,6 +606,23 @@
 
       .carousel-slide {
         height: 320px;
+      }
+
+      .carousel[data-carousel="terrier"] .carousel-slide {
+        height: 260px;
+      }
+
+      #project-detail-2 .carousel {
+        max-width: 100%;
+        padding: 8px;
+      }
+
+      #project-detail-2 .carousel-window {
+        max-height: 280px;
+      }
+
+      #project-detail-2 .carousel-slide {
+        height: 250px;
       }
     }
   </style>
@@ -781,7 +868,7 @@ TypeScript, JSX, Tailwind CSS, and Vite for hosting.
 
           <div class="detail-description">
             <p>Using Figma for prototyping and a Vite + React + Express stack, Terrier Taste helps BU students quickly discover local restaurants.</p>
-            <ul style="margin-left: 18px; color: #cfcfcf; line-height: 1.8;">
+            <ul>
               <li>Discover community-rated restaurants with rich photo galleries.</li>
               <li>Filter by location, budget, or dietary needs to find the right spot fast.</li>
               <li>Save favorites and share reviews to guide fellow students exploring Boston’s food scene.</li>
@@ -886,6 +973,7 @@ TypeScript, JSX, Tailwind CSS, and Vite for hosting.
     function showProjectDetail(index) {
       document.getElementById('projects-grid-view').style.display = 'none';
       document.getElementById(`project-detail-${index}`).classList.add('active');
+      window.scrollTo(0, 0);
     }
 
     function backToProjects() {
@@ -893,6 +981,7 @@ TypeScript, JSX, Tailwind CSS, and Vite for hosting.
       document.querySelectorAll('.project-detail.active').forEach(detail => {
         detail.classList.remove('active');
       });
+      window.scrollTo(0, 0);
     }
 
     // Filter functionality

@@ -37,3 +37,31 @@ if (hamburger && navMenu) {
     }
   });
 }
+
+// Force top-of-page when navigating to projects page from any site link.
+document.querySelectorAll('a[href^="projects.html"], a[href^="/projects.html"]').forEach(link => {
+  link.addEventListener('click', () => {
+    sessionStorage.setItem('forceProjectsTop', '1');
+  });
+});
+
+if (window.location.pathname.endsWith('/projects.html') || window.location.pathname === 'projects.html') {
+  if (sessionStorage.getItem('forceProjectsTop') === '1') {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    const resetToTop = () => {
+      window.scrollTo(0, 0);
+    };
+
+    resetToTop();
+    window.addEventListener('DOMContentLoaded', resetToTop);
+    window.addEventListener('load', resetToTop);
+    window.addEventListener('pageshow', () => {
+      resetToTop();
+      setTimeout(resetToTop, 0);
+      sessionStorage.removeItem('forceProjectsTop');
+    });
+  }
+}
