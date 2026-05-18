@@ -209,14 +209,6 @@
       margin-bottom: 50px;
     }
 
-    .skill-percentage {
-    font-size: 12px;
-    color: #aaa;
-    margin-top: 4px;
-    text-align: right; 
-  }
-
-
     .skill-category-title {
       font-size: 18px;
       font-weight: 700;
@@ -272,20 +264,6 @@
       font-size: 15px;
       font-weight: 600;
       color: white;
-    }
-
-    .skill-bar {
-      width: 100%;
-      height: 6px;
-      background: #333;
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      background: #4a90e2;
-      border-radius: 3px;
     }
 
     /* Languages Section */
@@ -354,57 +332,6 @@
       font-size: 14px;
     }
 
-    /* Platforms Section */
-    .platforms-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-      margin-top: 20px;
-    }
-
-    .platform-item {
-      text-align: center;
-    }
-
-    .platform-circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 15px;
-      position: relative;
-      background: conic-gradient(#4a90e2 var(--percentage), #333 var(--percentage));
-    }
-
-    .platform-circle::after {
-      content: '';
-      position: absolute;
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: #1e1e1e;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .platform-percent {
-      font-size: 28px;
-      font-weight: 700;
-      color: #4a90e2;
-      position: relative;
-      z-index: 1;
-    }
-
-    .platform-name {
-      font-size: 14px;
-      color: #cfcfcf;
-      margin-top: 15px;
-    }
-
     /* Knowledge Checklist */
     .knowledge-list {
       display: grid;
@@ -426,40 +353,6 @@
       font-weight: 700;
       font-size: 18px;
       flex-shrink: 0;
-    }
-
-    .interests-list .knowledge-item::before {
-      content: '⚽️';
-      color: inherit;
-      font-weight: normal;
-    }
-
-    .interests-list .knowledge-item:nth-child(2)::before {
-      content: '🌆';
-    }
-
-    .interests-list .knowledge-item:nth-child(3)::before {
-      content: '🍿';
-    }
-
-    .interests-list .knowledge-item:nth-child(4)::before {
-      content: '💸';
-    }
-
-    .interests-list .knowledge-item:nth-child(5)::before {
-      content: '🥊';
-    }
-
-    .interests-list .knowledge-item:nth-child(6)::before {
-      content: '🥋';
-    }
-
-    .interests-list .knowledge-item:nth-child(7)::before {
-      content: '💪';
-    }
-
-    .interests-list .knowledge-item:nth-child(8)::before {
-      content: '🚀';
     }
 
     @media (max-width: 768px) {
@@ -485,10 +378,6 @@
       .languages-section {
         grid-template-columns: 1fr;
         gap: 30px;
-      }
-
-      .platforms-grid {
-        grid-template-columns: repeat(2, 1fr);
       }
 
       .knowledge-list {
@@ -609,8 +498,9 @@ software development, supporting fundraising and strategic decisions.</div>
       <div class="filter-buttons">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="frontend">Frontend</button>
-        <button class="filter-btn" data-filter="backend">Backend</button>
-        <button class="filter-btn" data-filter="tools">Tools</button>
+        <button class="filter-btn" data-filter="backend">Backend and Databases</button>
+        <button class="filter-btn" data-filter="cloud">Cloud & Deployment</button>
+        <button class="filter-btn" data-filter="tools">AI & Tools</button>
       </div>
       <div id="skillsContent"></div>
     </div>
@@ -655,92 +545,123 @@ software development, supporting fundraising and strategic decisions.</div>
               <div class="dot empty"></div>
               <div class="dot empty"></div>
               <div class="dot empty"></div>
-              <span class="language-percent">60%</span>
+              <span class="language-percent">55%</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Platforms -->
-    <div class="section-title">Platforms</div>
-    <div class="platforms-grid">
-      <div class="platform-item">
-        <div class="platform-circle" style="--percentage: 90%;">
-          <div class="platform-percent">90%</div>
-        </div>
-        <div class="platform-name">Visual Studio Code</div>
-      </div>
-      <div class="platform-item">
-        <div class="platform-circle" style="--percentage: 85%;">
-          <div class="platform-percent">85%</div>
-        </div>
-        <div class="platform-name">Git/GitHub</div>
-      </div>
-      <div class="platform-item">
-        <div class="platform-circle" style="--percentage: 88%;">
-          <div class="platform-percent">88%</div>
-        </div>
-        <div class="platform-name">Vercel</div>
-      </div>
-      <div class="platform-item">
-        <div class="platform-circle" style="--percentage: 82%;">
-          <div class="platform-percent">82%</div>
-        </div>
-        <div class="platform-name">MongoDB</div>
-      </div>
-    </div>
-
     <!-- Knowledge -->
     <div class="section-title" style="margin-top: 60px;">Knowledge</div>
     <div class="knowledge-list">
-      <div class="knowledge-item">Web Development & Frontend Design</div>
-      <div class="knowledge-item">Object-Oriented Programming (OOP)</div>
-      <div class="knowledge-item">Data Structures & Algorithms</div>
-      <div class="knowledge-item">Git & GitHub</div>
-      <div class="knowledge-item">Full Stack Development</div>
-      <div class="knowledge-item">SQL & Database Design</div>
-    </div>
+  <div class="knowledge-item">Full Stack Web Development & Frontend Design</div>
+  <div class="knowledge-item">Object-Oriented Programming (OOP)</div>
+  <div class="knowledge-item">Responsive & Mobile First Design</div>
+  <div class="knowledge-item">SQL & Database Design</div>
+  <div class="knowledge-item">REST API & Third-Party API Integration</div>
+  <div class="knowledge-item">LLM Evaluation & Prompt Engineering</div>
+  <div class="knowledge-item">Financial Analysis & Market Research</div>
+</div>
 
     <!-- Interests -->
     <div class="section-title" style="margin-top: 60px;">Interests</div>
-    <div class="knowledge-list interests-list">
-      <div class="knowledge-item">Soccer</div>
-      <div class="knowledge-item">Travel</div>
-      <div class="knowledge-item">Movies & TV Shows</div>
-      <div class="knowledge-item">Investing</div>
-      <div class="knowledge-item">Muay Thai</div>
-      <div class="knowledge-item">BJJ</div>
-      <div class="knowledge-item">Fitness</div>
-      <div class="knowledge-item">Entrepreneurship</div>
+    <div class="languages-section">
+      <div class="skill-category">
+        <div class="language-item">
+          <div class="language-icon">⚽</div>
+          <div class="language-info">
+            <div class="language-name">Soccer</div>
+          </div>
+        </div>
+        <div class="language-item">
+          <div class="language-icon">🌆</div>
+          <div class="language-info">
+            <div class="language-name">Travel</div>
+          </div>
+        </div>
+        <div class="language-item">
+          <div class="language-icon">🍿</div>
+          <div class="language-info">
+            <div class="language-name">Movies & TV Shows</div>
+          </div>
+        </div>
+        <div class="language-item">
+          <div class="language-icon">💸</div>
+          <div class="language-info">
+            <div class="language-name">Investing</div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="language-item">
+          <div class="language-icon">🥊</div>
+          <div class="language-info">
+            <div class="language-name">Muay Thai</div>
+          </div>
+        </div>
+        <div class="language-item">
+          <div class="language-icon">🥋</div>
+          <div class="language-info">
+            <div class="language-name">BJJ</div>
+          </div>
+        </div>
+        <div class="language-item">
+          <div class="language-icon">💪</div>
+          <div class="language-info">
+            <div class="language-name">Fitness</div>
+          </div>
+        </div>
+        <div class="language-item">
+          <div class="language-icon">🚀</div>
+          <div class="language-info">
+            <div class="language-name">Entrepreneurship</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     const skillsData = {
       frontend: [
-        { name: 'HTML', iconClass: 'devicon-html5-plain colored', percentage: 95 },
-        { name: 'React', iconClass: 'devicon-react-original colored', percentage: 88 },
-        { name: 'Tailwind CSS / NativeWind', iconClass: 'devicon-tailwindcss-plain colored', percentage: 90 },
+        { name: 'React / React Native', iconClass: 'devicon-react-original colored', percentage: 88 },
+        { name: 'Next.js', iconClass: 'devicon-nextjs-plain', percentage: 70 },
         { name: 'TypeScript', iconClass: 'devicon-typescript-plain colored', percentage: 85 },
         { name: 'JavaScript', iconClass: 'devicon-javascript-plain colored', percentage: 80 },
-        { name: 'Next.js', iconClass: 'devicon-nextjs-plain', percentage: 70 },
+        { name: 'Tailwind CSS / NativeWind', iconClass: 'devicon-tailwindcss-plain colored', percentage: 90 },
+        { name: 'HTML', iconClass: 'devicon-html5-plain colored', percentage: 95 },
 
       ],
       backend: [
+        { name: 'Node.js', iconClass: 'devicon-nodejs-plain colored', percentage: 80 },
         { name: 'Python', iconClass: 'devicon-python-plain colored', percentage: 90 },
         { name: 'SQL', iconClass: 'devicon-mysql-plain colored', percentage: 80 },
-        { name: 'Node.js', iconClass: 'devicon-nodejs-plain colored', percentage: 80 },
-        { name: 'MongoDB', iconClass: 'devicon-mongodb-plain colored', percentage: 75 },
         { name: 'PostgreSQL', iconClass: 'devicon-postgresql-plain colored', percentage: 75 },
+        { name: 'Supabase', iconText: 'S', percentage: 100 },
+        { name: 'Prisma', iconText: 'P', percentage: 80 },
 
       ],
+      cloud: [
+        { name: 'AWS', iconClass: 'devicon-amazonwebservices-plain-wordmark colored', percentage: 80 },
+        { name: 'Vercel', iconText: 'V', percentage: 95 },
+        { name: 'Railway', iconText: 'R', percentage: 75 },
+      ],
       tools: [
+        { name: 'OpenAI API', iconText: 'AI', percentage: 75 },
+        { name: 'LangChain', iconText: 'LC', percentage: 75 },
         { name: 'Git/GitHub', iconClass: 'devicon-git-plain colored', percentage: 90 },
-        { name: 'VS Code', iconClass: 'devicon-vscode-plain colored', percentage: 90 },
-        { name: 'Vercel', iconText: 'V', percentage: 100 },
-        { name: 'Terminal', iconClass: 'devicon-bash-plain colored', percentage: 70 },
+        { name: 'Postman', iconText: 'P', percentage: 75 },
+        { name: 'Docker', iconClass: 'devicon-docker-plain colored', percentage: 70 },
+        { name: 'Clerk', iconText: 'C', percentage: 95 },
       ]
+    };
+
+    const skillCategoryLabels = {
+      frontend: 'Frontend',
+      backend: 'Backend and Databases',
+      cloud: 'Cloud & Deployment',
+      tools: 'AI & Tools'
     };
 
     function renderSkills(filter) {
@@ -748,13 +669,12 @@ software development, supporting fundraising and strategic decisions.</div>
       container.innerHTML = '';
 
       if (filter === 'all') {
-        const allSkills = { 'Frontend': skillsData.frontend, 'Backend': skillsData.backend, 'Tools': skillsData.tools };
-        for (const [category, skills] of Object.entries(allSkills)) {
-          renderCategory(container, category, skills);
+        for (const [categoryKey, skills] of Object.entries(skillsData)) {
+          renderCategory(container, skillCategoryLabels[categoryKey], skills);
           
         }
       } else {
-        renderCategory(container, filter.charAt(0).toUpperCase() + filter.slice(1), skillsData[filter]);
+        renderCategory(container, skillCategoryLabels[filter], skillsData[filter]);
       }
     }
 
@@ -782,10 +702,6 @@ software development, supporting fundraising and strategic decisions.</div>
     </div>
     <div class="skill-name">${skill.name}</div>
   </div>
-  <div class="skill-bar">
-    <div class="skill-bar-fill" style="width: ${skill.percentage}%;"></div>
-  </div>
-  <div class="skill-percentage">${skill.percentage}%</div>
 `;
 
           grid.appendChild(skillItem);
