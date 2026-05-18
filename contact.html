@@ -18,8 +18,13 @@
     label { font-weight:600; margin-bottom:5px; color:#cfcfcf; }
     input[type="text"], input[type="email"], textarea { padding:10px; border:none; border-radius:8px; font-size:14px; background:#333; color:white; }
     input[type="text"]:focus, input[type="email"]:focus, textarea:focus { outline:2px solid #4a90e2; }
+    textarea { min-height: 140px; resize: vertical; }
     #button { background:#4a90e2; color:white; font-weight:600; padding:12px; border:none; border-radius:10px; cursor:pointer; transition:0.3s; }
-    #button:hover { background:#357ABD; }
+    #button:hover:not(:disabled) { background:#357ABD; }
+    #button:disabled { cursor:not-allowed; opacity:0.7; }
+    .form-status { min-height: 22px; margin: 0; text-align: left; font-size: 14px; color: #cfcfcf; }
+    .form-status.success { color: #62d889; }
+    .form-status.error { color: #ff7a7a; }
     @media (max-width:768px) {
       main { padding:40px 20px; }
       h1 { font-size:28px; }
@@ -46,50 +51,67 @@
 
   <main>
     <h1>Contact Me</h1>
-    <p>Email: <a href="mailto:judeh@bu.edu">judeh@bu.edu</a></p>
+    <p>Email: <a href="mailto:hosmerjude@gmail.com">hosmerjude@gmail.com</a></p>
     <p>Phone: 646 708 1889</p>
     <p>Feel free to reach out for opportunities or collaborations.</p>
 
     <form id="form">
       <div class="field">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" required>
+        <input type="text" name="from_name" id="name" autocomplete="name" required>
       </div>
       <div class="field">
         <label for="email">Email</label>
-        <input type="text" name="email" id="email" required>
+        <input type="email" name="reply_to" id="email" autocomplete="email" required>
       </div>
       <div class="field">
         <label for="message">Message</label>
-        <input type="text" name="message" id="message" required>
+        <textarea name="message" id="message" required></textarea>
       </div>
+      <input type="hidden" name="to_email" value="hosmerjude@gmail.com">
+      <p class="form-status" id="form-status" aria-live="polite"></p>
       <input type="submit" id="button" value="Send Email">
     </form>
   </main>
 
   <script type="text/javascript">
-    emailjs.init('JmYphf3DEmh3xw3FT');
+    const emailConfig = {
+      publicKey: 'JmYphf3DEmh3xw3FT',
+      serviceID: 'default_service',
+      templateID: 'template_83hkjjd'
+    };
+
+    emailjs.init({ publicKey: emailConfig.publicKey });
 
     const btn = document.getElementById('button');
+    const status = document.getElementById('form-status');
+    const form = document.getElementById('form');
 
-    document.getElementById('form')
-      .addEventListener('submit', function(event) {
-        event.preventDefault();
-        btn.value = 'Sending...';
+    function setStatus(message, type = '') {
+      status.textContent = message;
+      status.className = `form-status ${type}`.trim();
+    }
 
-        const serviceID = 'default_service';
-        const templateID = 'template_83hkjjd';
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      btn.value = 'Sending...';
+      btn.disabled = true;
+      setStatus('');
 
-        emailjs.sendForm(serviceID, templateID, this)
-          .then(() => {
-            btn.value = 'Send Email';
-            alert('Sent!');
-            this.reset();
-          }, (err) => {
-            btn.value = 'Send Email';
-            alert(JSON.stringify(err));
-          });
-      });
+      emailjs.sendForm(emailConfig.serviceID, emailConfig.templateID, this)
+        .then(() => {
+          setStatus('Message sent. I will get back to you soon.', 'success');
+          this.reset();
+        })
+        .catch((err) => {
+          console.error('EmailJS send failed:', err);
+          setStatus('Message could not be sent. Please email me directly at hosmerjude@gmail.com.', 'error');
+        })
+        .finally(() => {
+          btn.value = 'Send Email';
+          btn.disabled = false;
+        });
+    });
   </script>
 </body>
 </html>

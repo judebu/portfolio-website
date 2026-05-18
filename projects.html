@@ -290,6 +290,22 @@
       filter: brightness(0.93) saturate(1.02);
     }
 
+    .carousel-project-label {
+      z-index: 4;
+      text-decoration: none;
+    }
+
+    .carousel:hover .carousel-project-label {
+      transform: translate(-50%, -52%);
+      color: #e6f0ff;
+      background: rgba(0, 0, 0, 0.6);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .carousel:hover .carousel-slide.active {
+      filter: brightness(0.93) saturate(1.02);
+    }
+
     .gallery-image {
       width: 100%;
       height: auto;
@@ -364,6 +380,7 @@
     #project-detail-2 .carousel-slide {
       height: 320px;
       border-radius: 10px;
+      cursor: zoom-in;
     }
 
     #project-detail-2 .carousel-btn {
@@ -502,6 +519,60 @@
       background: #5ba0f2;
       border-color: #5ba0f2;
       color: #ffffff;
+    }
+
+    .image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      cursor: zoom-out;
+    }
+
+    .image-lightbox.active {
+      display: flex;
+    }
+
+    .image-lightbox img {
+      max-width: min(1100px, 92vw);
+      max-height: 86vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
+      cursor: default;
+      animation: lightboxZoom 0.22s ease;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    @keyframes lightboxZoom {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     @media (max-width: 1100px) {
@@ -676,21 +747,6 @@
           </div>
         </div>
 
-        <div class="project-card" data-category="fullstack" onclick="showProjectDetail(1)">
-          <div class="project-image" style="background: white;"><img src=/images/guru-1.png></div>
-          <div class="project-content">
-            <div class="project-category">Full-Stack</div>
-            <div class="project-title">Guru — Stock Trading P/L Tracker</div>
-            <div class="project-desc">Options trading P/L tracker featuring an interactive calendar interface.</div>
-            <div class="project-tags">
-              <span class="tag">React</span>
-              <span class="tag">JSX</span>
-              <span class="tag">TypeScript</span>
-
-            </div>
-          </div>
-        </div>
-
         <div class="project-card" data-category="fullstack" onclick="showProjectDetail(2)">
           <div class="project-image" style="background: #0b1b2b;"><img src="/images/terrier-taste-1.png" alt="Terrier Taste preview"></div>
           <div class="project-content">
@@ -720,6 +776,21 @@
               <span class="tag">API</span>
               <span class="tag">Git/GitHub</span>
               <span class="tag">TypeScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="fullstack" onclick="showProjectDetail(1)">
+          <div class="project-image" style="background: white;"><img src=/images/guru-1.png></div>
+          <div class="project-content">
+            <div class="project-category">Full-Stack</div>
+            <div class="project-title">Guru — Stock Trading P/L Tracker</div>
+            <div class="project-desc">Options trading P/L tracker featuring an interactive calendar interface.</div>
+            <div class="project-tags">
+              <span class="tag">React</span>
+              <span class="tag">JSX</span>
+              <span class="tag">TypeScript</span>
+
             </div>
           </div>
         </div>
@@ -899,6 +970,7 @@ TypeScript, JSX, Tailwind CSS, and Vite for hosting.
                   <img src="images/terrier-taste-5.png" alt="Saved favorites gallery" class="carousel-slide">
                 </div>
               </div>
+              <a class="gallery-label carousel-project-label" href="https://terrier-taste-hackathon.vercel.app/" target="_blank" rel="noopener">View the full project here</a>
               <button class="carousel-btn next" type="button" aria-label="Next image">›</button>
             </div>
             <div class="carousel-dots">
@@ -968,6 +1040,11 @@ TypeScript, JSX, Tailwind CSS, and Vite for hosting.
     </div>
   </div>
 
+  <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close image preview">&times;</button>
+    <img src="" alt="">
+  </div>
+
   <script src="js/script.js"></script>
   <script>
     function showProjectDetail(index) {
@@ -1022,6 +1099,49 @@ TypeScript, JSX, Tailwind CSS, and Vite for hosting.
       dots.forEach((dot, i) => dot.addEventListener('click', () => updateCarousel(i)));
 
       updateCarousel(0);
+    });
+
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+    function openImageLightbox(image) {
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt;
+      lightbox.classList.add('active');
+      lightbox.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeImageLightbox() {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+      lightboxImage.alt = '';
+    }
+
+    document.querySelectorAll('#project-detail-2 .carousel-slide').forEach(slide => {
+      slide.setAttribute('tabindex', '0');
+      slide.addEventListener('click', () => openImageLightbox(slide));
+      slide.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openImageLightbox(slide);
+        }
+      });
+    });
+
+    lightbox.addEventListener('click', event => {
+      if (event.target === lightbox) {
+        closeImageLightbox();
+      }
+    });
+
+    lightboxClose.addEventListener('click', closeImageLightbox);
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeImageLightbox();
+      }
     });
   </script>
 </body>
