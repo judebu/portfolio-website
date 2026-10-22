@@ -25,37 +25,27 @@
       margin-bottom: 10px;
     }
 
-    .filter-tabs {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 8px 20px;
-      background: transparent;
-      border: 2px solid #4a90e2;
-      color: #4a90e2;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.3s;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: #4a90e2;
-      color: white;
-    }
-
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
       margin-bottom: 40px;
+    }
+
+    .projects-grid--current {
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    }
+
+    .archived-projects summary {
+      cursor: pointer;
+      color: #cfcfcf;
+      font-size: 20px;
+      font-weight: 600;
+      padding: 16px 0;
+    }
+
+    .archived-projects[open] summary {
+      margin-bottom: 20px;
     }
 
     .project-card {
@@ -70,7 +60,6 @@
     .project-card:hover {
       transform: translateY(-10px);
       border-color: #4a90e2;
-      box-shadow: 0 20px 40px rgba(74, 144, 226, 0.2);
     }
 
     .project-image {
@@ -95,14 +84,6 @@
 
     .project-content {
       padding: 25px;
-    }
-
-    .project-category {
-      font-size: 12px;
-      color: #4a90e2;
-      font-weight: 600;
-      margin-bottom: 10px;
-      text-transform: uppercase;
     }
 
     .project-title {
@@ -462,7 +443,7 @@
       border-color: #4a90e2;
     }
 
-    /* Specific sizing tweak for the TapIn detail image */
+    /* Specific sizing tweak for the Mobile Movie App detail image */
     .gallery-image--tapin {
       width: 85%;
       max-height: 600px;
@@ -641,14 +622,6 @@
         font-size: 28px;
       }
 
-      .filter-tabs {
-        gap: 10px;
-      }
-
-      .filter-btn {
-        padding: 6px 15px;
-        font-size: 12px;
-      }
 
       .detail-right {
         align-items: center;
@@ -723,18 +696,30 @@
         <h1>My Projects</h1>
       </div>
 
-      <div class="filter-tabs">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
-        <button class="filter-btn" data-filter="AI">AI & Machine Learning</button>
-        <button class="filter-btn" data-filter="algo">Systems & Algorithms</button>
+      <div class="projects-grid projects-grid--current">
+        <div class="project-card" onclick="showProjectDetail(4)">
+          <div class="project-image" style="background: #090a0b;"><img src="images/matchiqpreview.png" alt="MatchIQ sports prediction app preview" class="matchiq-preview"></div>
+          <div class="project-content">
+            <div class="project-title">MatchIQ — Sports Prediction Web App</div>
+            <div class="project-desc">Full-stack sports prediction app that calculates Elo ratings and uses Poisson models and Monte Carlo simulations to generate match outcome probabilities from historical data.</div>
+            <div class="project-tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Google Auth</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="projects-grid">
-        <div class="project-card" data-category="fullstack" onclick="showProjectDetail(0)">
+      <details class="archived-projects">
+        <summary>Older Projects</summary>
+        <div class="projects-grid">
+        <div class="project-card" onclick="showProjectDetail(0)">
           <div class="project-image" style="background: #0f1b2e;"><img src="/images/filmflow1.png" alt="FilmFlow preview"></div>
           <div class="project-content">
-            <div class="project-category">Full-Stack</div>
             <div class="project-title">FilmFlow — Web Movie App</div>
             <div class="project-desc">Responsive web app to browse, search, and save your favorite films.</div>
             <div class="project-tags">
@@ -747,11 +732,10 @@
           </div>
         </div>
 
-        <div class="project-card" data-category="fullstack" onclick="showProjectDetail(2)">
+        <div class="project-card" onclick="showProjectDetail(2)">
           <div class="project-image" style="background: #0b1b2b;"><img src="/images/terrier-taste-1.png" alt="Terrier Taste preview"></div>
           <div class="project-content">
-            <div class="project-category">Full-Stack</div>
-            <div class="project-title">Terrier Taste — BU Food Finder</div>
+            <div class="project-title">Terrier Taste — Hackathon Project</div>
             <div class="project-desc">Discover top rated local restaurants through student reviews and filters.</div>
             <div class="project-tags">
               <span class="tag">Hackathon</span>
@@ -764,11 +748,10 @@
           </div>
         </div>
 
-        <div class="project-card" data-category="fullstack" onclick="showProjectDetail(3)">
-          <div class="project-image" style="background: black;"><img src="/images/tapin-1.png" alt="TapIn preview"></div>
+        <div class="project-card" onclick="showProjectDetail(3)">
+          <div class="project-image" style="background: black;"><img src="/images/tapin-1.png" alt="Mobile Movie App preview"></div>
           <div class="project-content">
-            <div class="project-category">Full-Stack</div>
-            <div class="project-title">TapIn — Mobile Movie App</div>
+            <div class="project-title">Mobile Movie App</div>
             <div class="project-desc">Mobile app for exploring and rating trending movies.</div>
             <div class="project-tags">
               <span class="tag">React Native</span>
@@ -780,28 +763,59 @@
           </div>
         </div>
 
-        <div class="project-card" data-category="fullstack" onclick="showProjectDetail(1)">
-          <div class="project-image" style="background: white;"><img src=/images/guru-1.png></div>
-          <div class="project-content">
-            <div class="project-category">Full-Stack</div>
-            <div class="project-title">Guru — Stock Trading P/L Tracker</div>
-            <div class="project-desc">Options trading P/L tracker featuring an interactive calendar interface.</div>
-            <div class="project-tags">
-              <span class="tag">React</span>
-              <span class="tag">JSX</span>
-              <span class="tag">TypeScript</span>
+        </div>
+      </details>
+    </div>
 
+    <!-- Project Detail Views -->
+    <div id="project-detail-4" class="project-detail">
+      <div class="detail-header">
+        <button class="back-btn" onclick="backToProjects()">← Back</button>
+        <h1 class="detail-title">MatchIQ — Sports Prediction Web App</h1>
+        <a class="view-project-btn" href="https://match-iq-portfolio.vercel.app/" target="_blank" rel="noopener">View Project</a>
+      </div>
+
+      <div class="detail-layout">
+        <div class="detail-left">
+          <div class="detail-info">
+            <div class="info-box">
+              <div class="info-label">Created By:</div>
+              <div class="info-value">Jude Hosmer</div>
             </div>
+            <div class="info-box">
+              <div class="info-label">Type:</div>
+              <div class="info-value">Full-Stack Web Application</div>
+            </div>
+          </div>
+
+          <div class="detail-description">
+            Full-stack sports prediction app that uses Elo ratings, a Poisson model, expected goals (xG), and Monte Carlo simulations to calculate match outcome probabilities from historical data. Built with Next.js, TypeScript, FastAPI, and PostgreSQL.
+          </div>
+
+          <div class="detail-tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Google Auth</span>
+          </div>
+        </div>
+
+        <div class="detail-right">
+          <div class="project-gallery">
+            <a class="gallery-thumb" href="https://match-iq-portfolio.vercel.app/" target="_blank" rel="noopener" aria-label="View MatchIQ">
+              <img src="images/matchiq-1.png" alt="MatchIQ match prediction interface" class="gallery-image">
+              <span class="gallery-label">View the full project here</span>
+            </a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Project Detail Views -->
     <div id="project-detail-0" class="project-detail">
       <div class="detail-header">
         <button class="back-btn" onclick="backToProjects()">← Back</button>
-        <h1 class="detail-title">FilmFlow — Movie Discovery Hub</h1>
+        <h1 class="detail-title">FilmFlow - Movie Discovery App</h1>
         <a class="view-project-btn" href="https://fp-cs391.vercel.app/" target="_blank" rel="noopener">View Project</a>
       </div>
 
@@ -854,65 +868,10 @@
       </div>
     </div>
 
-    <div id="project-detail-1" class="project-detail">
-      <div class="detail-header">
-        <button class="back-btn" onclick="backToProjects()">← Back</button>
-        <h1 class="detail-title">Stock Trading P/L Tracker</h1>
-        <a class="view-project-btn" href="https://guru-stock-trading-app.vercel.app/" target="_blank" rel="noopener">View Project</a>
-      </div>
-
-      <div class="detail-layout">
-        <div class="detail-left">
-          <div class="detail-info">
-            <div class="info-box">
-              <div class="info-label">Created By:</div>
-              <div class="info-value">Jude Hosmer</div>
-            </div>
-            <div class="info-box">
-              <div class="info-label">Date:</div>
-              <div class="info-value">2024</div>
-            </div>
-            <div class="info-box">
-              <div class="info-label">Type:</div>
-              <div class="info-value">Personal Project</div>
-            </div>
-            <div class="info-box">
-              <div class="info-label">Categories:</div>
-              <div class="info-value">Web Application</div>
-            </div>
-          </div>
-
-          <div class="detail-description">
-            Options trading P/L tracker featuring an interactive and aesthetic calendar interface, developed using React,
-TypeScript, JSX, Tailwind CSS, and Vite for hosting.
-          </div>
-
-          <div class="detail-tags">
-            <span class="tag">React</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Dashboard</span>
-            <span class="tag">Vite</span>
-            <span class="tag">JSX</span>
-            <span class="tag">Tailwind</span>
-            
-          </div>
-        </div>
-
-        <div class="detail-right">
-          <div class="project-gallery">
-            <a class="gallery-thumb" href="https://guru-stock-trading-app.vercel.app/" target="_blank" rel="noopener">
-              <img src="/images/guru-1.png" alt="Guru Screenshot 1" class="gallery-image">
-              <span class="gallery-label">View the full project here</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div id="project-detail-2" class="project-detail">
       <div class="detail-header">
         <button class="back-btn" onclick="backToProjects()">← Back</button>
-        <h1 class="detail-title">Terrier Taste — BU Food Finder</h1>
+        <h1 class="detail-title">Terrier Taste — Hackathon Project</h1>
         <a class="view-project-btn" href="https://terrier-taste-hackathon.vercel.app/" target="_blank" rel="noopener">View Project</a>
       </div>
 
@@ -988,7 +947,7 @@ TypeScript, JSX, Tailwind CSS, and Vite for hosting.
     <div id="project-detail-3" class="project-detail">
       <div class="detail-header">
         <button class="back-btn" onclick="backToProjects()">← Back</button>
-        <h1 class="detail-title">TapIn — Mobile Movie App</h1>
+        <h1 class="detail-title">Mobile Movie App</h1>
         <a class="view-project-btn" href="https://google.com" target="_blank" rel="noopener">View Project</a>
       </div>
 
@@ -1031,7 +990,7 @@ TypeScript, JSX, Tailwind CSS, and Vite for hosting.
         <div class="detail-right">
           <div class="project-gallery">
             <a class="gallery-thumb" href="https://google.com" target="_blank" rel="noopener">
-              <img src="images/tapin-2.png" alt="TapIn Screenshot 2" class="gallery-image gallery-image--tapin">
+              <img src="images/tapin-2.png" alt="Mobile Movie App Screenshot 2" class="gallery-image gallery-image--tapin">
               <span class="gallery-label">View the full project here</span>
             </a>
           </div>
@@ -1060,23 +1019,6 @@ TypeScript, JSX, Tailwind CSS, and Vite for hosting.
       });
       window.scrollTo(0, 0);
     }
-
-    // Filter functionality
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        
-        const filter = this.getAttribute('data-filter');
-        document.querySelectorAll('.project-card').forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-category') === filter) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
 
     // Simple carousel for project galleries
     document.querySelectorAll('[data-carousel]').forEach(carousel => {

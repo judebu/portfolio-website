@@ -46,7 +46,8 @@
 
     .featured-projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: minmax(0, 600px);
+      justify-content: center;
       gap: 30px;
       margin-bottom: 50px;
     }
@@ -71,7 +72,6 @@
     .featured-card:hover {
       transform: translateY(-8px);
       border-color: #4a90e2;
-      box-shadow: 0 15px 40px rgba(74, 144, 226, 0.15);
     }
 
     .featured-card-image {
@@ -267,7 +267,7 @@
     <div class="intro">
       <p>Hi I'm <span class="typing"></span></p>
       <h1>Jude Hosmer</h1>
-      <p class="desc">I'm a student at Boston University interested in software engineering & frontend development. I'm passionate about creating clean, user-focused web applications.</p>
+      <p class="desc">Hi, I'm a senior at Boston University majoring in computer science and economics. I'm interested in software engineering & full stack development.</p>
 
       <div class="buttons">
         <a href="projects.html" class="btn">View Projects</a>
@@ -292,72 +292,26 @@
     <div class="featured-container">
       <div class="featured-header">
         <h2>Featured <span class="highlight">Projects</span></h2>
-        <p>Explore some of my recent projects, each thoughtfully designed with a focus on detail, performance, and user experience.</p>
       </div>
 
       <div class="featured-projects-grid">
         <a href="projects.html" class="featured-card-link">
           <div class="featured-card">
             <div class="featured-card-image">
-              <img src="images/filmflow1.png" alt="FilmFlow - Movie Discovery Hub" />
+              <img src="images/matchiqpreview.png" alt="MatchIQ sports prediction app preview" />
               <div class="featured-overlay">
                 <span class="view-btn">View Project</span>
               </div>
             </div>
             <div class="featured-card-content">
-              <h3>FilmFlow — Web Movie App</h3>
-              <p>Responsive web app to browse, search, and save your favorite films.</p>
+              <h3>MatchIQ — Sports Prediction Web App</h3>
+              <p>Full-stack sports prediction app that calculates Elo ratings and uses Poisson models and Monte Carlo simulations to generate match outcome probabilities from historical data.</p>
               <div class="featured-card-tags">
-                <span class="tag">React/Nextjs</span>
+                <span class="tag">Next.js</span>
                 <span class="tag">TypeScript</span>
-                <span class="tag">TMDB API</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">PostgreSQL</span>
                 <span class="tag">Google Auth</span>
-                <span class="tag">MongoDB</span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <a href="projects.html" class="featured-card-link">
-          <div class="featured-card">
-            <div class="featured-card-image">
-              <img src="images/terrier-taste-1.png" alt="Terrier Taste - BU Food Finder" />
-              <div class="featured-overlay">
-                <span class="view-btn">View Project</span>
-              </div>
-            </div>
-            <div class="featured-card-content">
-              <h3>Terrier Taste — BU Food Finder</h3>
-              <p>Discover top rated local restaurants through student reviews and filters.</p>
-              <div class="featured-card-tags">
-                <span class="tag">Hackathon</span>
-                <span class="tag">React</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">Express</span>
-                <span class="tag">Figma</span>
-                <span class="tag">SQLite</span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <a href="projects.html" class="featured-card-link">
-          <div class="featured-card">
-            <div class="featured-card-image">
-              <img src="images/tapin-1.png" alt="TapIn - Mobile Movie App" />
-              <div class="featured-overlay">
-                <span class="view-btn">View Project</span>
-              </div>
-            </div>
-            <div class="featured-card-content">
-              <h3>TapIn — Mobile Movie App</h3>
-              <p>Mobile app for exploring and rating trending movies.</p>
-              <div class="featured-card-tags">
-                <span class="tag">React Native</span>
-                <span class="tag">NativeWind</span>
-                <span class="tag">API</span>
-                <span class="tag">Git/GitHub</span>
-                <span class="tag">TypeScript</span>
               </div>
             </div>
           </div>
