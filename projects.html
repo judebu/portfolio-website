@@ -697,6 +697,24 @@
       </div>
 
       <div class="projects-grid projects-grid--current">
+        <div class="project-card" onclick="showProjectDetail(5)">
+          <div class="project-image" style="background: #0d1c27;"><img src="images/atlas-preview.png" alt="Atlas Massachusetts site suitability map and location selection interface"></div>
+          <div class="project-content">
+            <div class="project-title">Atlas — AI-Powered Data Center Site Selection</div>
+            <div class="project-desc">AI-powered data center site selection platform with an interactive 3D map of Massachusetts to evaluate power infrastructure, land availability, construction costs, and environmental impact.</div>
+            <div class="project-tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Python</span>
+              <span class="tag">MapLibre</span>
+              <span class="tag">deck.gl</span>
+              <span class="tag">Claude API</span>
+              <span class="tag">AWS Bedrock</span>
+            </div>
+          </div>
+        </div>
+
+
         <div class="project-card" onclick="showProjectDetail(4)">
           <div class="project-image" style="background: #090a0b;"><img src="images/matchiqpreview.png" alt="MatchIQ sports prediction app preview" class="matchiq-preview"></div>
           <div class="project-content">
@@ -768,6 +786,51 @@
     </div>
 
     <!-- Project Detail Views -->
+    <div id="project-detail-5" class="project-detail">
+      <div class="detail-header">
+        <button class="back-btn" onclick="backToProjects()">← Back</button>
+        <h1 class="detail-title">Atlas — AI-Powered Data Center Site Selection</h1>
+        <a class="view-project-btn" href="https://atlasappai.vercel.app/" target="_blank" rel="noopener">View Project</a>
+      </div>
+
+      <div class="detail-layout">
+        <div class="detail-left">
+          <div class="detail-info">
+            <div class="info-box">
+              <div class="info-label">Type:</div>
+              <div class="info-value">Full-Stack Web Application</div>
+            </div>
+            <div class="info-box">
+              <div class="info-label">Focus:</div>
+              <div class="info-value">Geospatial Analysis &amp; AI-Assisted Site Selection</div>
+            </div>
+          </div>
+          <div class="detail-description">
+            <p>Atlas is an AI-powered data center site selection platform built with Next.js, TypeScript, Python, MapLibre, and deck.gl. Its interactive 3D map of Massachusetts helps users evaluate potential sites based on power infrastructure, land availability, construction costs, and environmental impact.</p>
+            <p>The platform integrates geospatial and environmental datasets with the Claude API through AWS Bedrock to compare locations, assess infrastructure feasibility and community impact, and recommend optimal sites for data center development.</p>
+          </div>
+          <div class="detail-tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Python</span>
+              <span class="tag">MapLibre</span>
+              <span class="tag">deck.gl</span>
+              <span class="tag">Claude API</span>
+              <span class="tag">AWS Bedrock</span>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="project-gallery">
+            <a class="gallery-thumb" href="https://atlasappai.vercel.app/" target="_blank" rel="noopener" aria-label="View Atlas">
+              <img src="images/atlas-preview.png" alt="Atlas interface showing Massachusetts site suitability scores and suggested locations" class="gallery-image">
+              <span class="gallery-label">View the full project here</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <div id="project-detail-4" class="project-detail">
       <div class="detail-header">
         <button class="back-btn" onclick="backToProjects()">← Back</button>
